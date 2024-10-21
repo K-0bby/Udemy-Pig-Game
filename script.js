@@ -21,6 +21,8 @@ const scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
 
+let playing = true;
+
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
   currentScore = 0;
@@ -58,10 +60,13 @@ btnHold.addEventListener("click", function () {
   document.getElementById(`score--${activePlayer}`).textContent =
     scores[activePlayer];
 
-  // check if score >= 100; finish game.
+  // check if score >= 100
   if(scores[activePlayer] >= 100) {
-    
-  }
+    // finish the game
+    playing = false;
+    document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+  } 
 
   // switch to next player
   switchPlayer();
